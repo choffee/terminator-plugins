@@ -2,6 +2,9 @@ import gtk
 import urllib
 import terminatorlib.plugin as plugin
 
+# Written by John Cooper http://choffee.co.uk
+# Copyright 2010 John Cooper
+# See copyright file that comes with this file for full licence
 
 # available must contain a list of all the classes that you want exposed
 available = ['SearchPlugin']
