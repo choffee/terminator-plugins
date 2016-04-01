@@ -3,4 +3,4 @@ Some plugins for terminator
 Put them in ~/.config/terminator/plugins/
 
 Online Search: searchplugin.py
-    Search google for the selected text in a terminal
+    Open a new browser window with a google search for the selected text in a terminal
