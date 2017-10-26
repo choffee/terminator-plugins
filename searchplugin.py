@@ -1,4 +1,7 @@
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
+from gi.repository import Gdk
 import urllib
 import terminatorlib.plugin as plugin
 import re
@@ -11,6 +14,8 @@ import re
 
 # AVAILABLE must contain a list of all the classes that you want exposed
 AVAILABLE = ['SearchPlugin']
+
+gtk = Gtk
 
 _spaces = re.compile(" +")
 
@@ -25,7 +30,7 @@ class SearchPlugin(plugin.Plugin):
             return
         base_uri = "http://www.google.com/search?q=%s"
         uri = base_uri % urllib.quote(self.searchstring.encode("utf-8"))
-        gtk.show_uri(None, uri, gtk.gdk.CURRENT_TIME)
+        gtk.show_uri(None, uri, Gdk.CURRENT_TIME)
         
     def callback(self, menuitems, menu, terminal):
         """Add our menu item to the menu"""
@@ -33,7 +38,7 @@ class SearchPlugin(plugin.Plugin):
         item = gtk.ImageMenuItem(gtk.STOCK_FIND)
         item.connect('activate', self.do_search)
         if terminal.vte.get_has_selection():
-            clip = gtk.clipboard_get(gtk.gdk.SELECTION_PRIMARY)
+            clip = gtk.Clipboard.get(Gdk.SELECTION_PRIMARY)
             self.searchstring = clip.wait_for_text().strip()
             self.searchstring = self.searchstring.replace("\n", " ")
             self.searchstring = self.searchstring.replace("\t", " ")
