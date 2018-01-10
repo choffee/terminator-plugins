@@ -28,7 +28,7 @@ class SearchPlugin(plugin.Plugin):
         """Launch Google search for string"""
         if not self.searchstring:
             return
-        base_uri = "http://www.google.com/search?q=%s"
+        base_uri = "https://www.google.com/search?q=%s"
         uri = base_uri % urllib.quote(self.searchstring.encode("utf-8"))
         gtk.show_uri(None, uri, Gdk.CURRENT_TIME)
         
